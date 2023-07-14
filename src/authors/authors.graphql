@@ -1,0 +1,24 @@
+type Author {
+  id: Int!
+  firstName: String
+  lastName: String
+}
+
+type RemoveAuthor {
+  id: Int
+}
+
+input AuthorInput {
+  firstName: String
+  lastName: String
+}
+
+type Query {
+  getAuthor(authorId: Int): Author
+  getAllAuthors: [Author]
+}
+
+type Mutation {
+  createAuthor(input: AuthorInput!): Author
+  removeAuthor(id: Int): RemoveAuthor
+}

@@ -8,36 +8,29 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface CreateCatInput {
-    name?: Nullable<string>;
-    age?: Nullable<number>;
+export interface AuthorInput {
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+}
+
+export interface Author {
+    id: number;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+}
+
+export interface RemoveAuthor {
+    id?: Nullable<number>;
 }
 
 export interface IQuery {
-    cats(): Nullable<Nullable<Cat>[]> | Promise<Nullable<Nullable<Cat>[]>>;
-    cat(id: string): Nullable<Cat> | Promise<Nullable<Cat>>;
+    getAuthor(authorId?: Nullable<number>): Nullable<Author> | Promise<Nullable<Author>>;
+    getAllAuthors(): Nullable<Nullable<Author>[]> | Promise<Nullable<Nullable<Author>[]>>;
 }
 
 export interface IMutation {
-    createCat(createCatInput?: Nullable<CreateCatInput>): Nullable<Cat> | Promise<Nullable<Cat>>;
-}
-
-export interface ISubscription {
-    catCreated(): Nullable<Cat> | Promise<Nullable<Cat>>;
-}
-
-export interface Owner {
-    id: number;
-    name: string;
-    age?: Nullable<number>;
-    cats?: Nullable<Cat[]>;
-}
-
-export interface Cat {
-    id?: Nullable<number>;
-    name?: Nullable<string>;
-    age?: Nullable<number>;
-    owner?: Nullable<Owner>;
+    createAuthor(input: AuthorInput): Nullable<Author> | Promise<Nullable<Author>>;
+    removeAuthor(id?: Nullable<number>): Nullable<RemoveAuthor> | Promise<Nullable<RemoveAuthor>>;
 }
 
 type Nullable<T> = T | null;
